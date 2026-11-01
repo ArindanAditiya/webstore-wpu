@@ -5,13 +5,13 @@
         alt="Product Name">
     <div class="py-5">
         <h3 class="text-lg font-bold text-gray-800 dark:text-white">
-            Product Name
+            {{ $product->name }}
         </h3>
         <span class="text-sm text-gray-500">
-            Ebook, Software Engineer, Web Developer
+            {{ $product->tag }}
         </span>
         <p class="mt-1 font-semibold text-black dark:text-black">
-            Rp.123.456
+            Rp. {{ $product->price }}
         </p>
     </div>
 </a>

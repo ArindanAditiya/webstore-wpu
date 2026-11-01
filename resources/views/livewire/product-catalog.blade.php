@@ -66,9 +66,16 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-1 gap-5 my-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-                    @for ($i = 0; $i <= 10; $i++)
+                    @forelse ($products as $product)
+                        <x-single-product-card :product=$product/>
+                    @empty
+                        <div class="col-span-full">
+                            Product Not Found
+                        </div>
+                    @endforelse
+                    {{-- @for ($i = 0; $i <= 10; $i++)
                         <x-single-product-card />
-                    @endfor
+                    @endfor --}}
 
                 </div>
             </div>

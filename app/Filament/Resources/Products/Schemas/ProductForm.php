@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -12,24 +14,31 @@ class ProductForm
     {
         return $schema
             ->components([
-
+                SpatieMediaLibraryFileUpload::make("cover")
+                        ->collection("cover"),
+                SpatieMediaLibraryFileUpload::make("gallery")
+                        ->collection("gallery")
+                        ->multiple(),
                 Section::make()->schema([
                     TextInput::make("name")
-                    ->label("Product Name"),
+                        ->label("Product Name"),
                     TextInput::make("sku")
-                    ->label("SKU")
-                    ->unique(),
+                        ->label("SKU")
+                        ->unique(),
                     TextInput::make("slug")
-                    ->unique(),
+                        ->unique(),
+                    SpatieTagsInput::make("tags")
+                        ->type("collection")
+                        ->label("Collection"),
                     TextInput::make("stock")
-                    ->numeric()
-                    ->default(0),
+                        ->numeric()
+                        ->default(0),
                     TextInput::make("price")
-                    ->numeric()
-                    ->prefix("Rp"),
+                        ->numeric()
+                        ->prefix("Rp"),
                     TextInput::make("weight")
-                    ->numeric()
-                    ->suffix("gram")
+                        ->numeric()
+                        ->suffix("gram")
                 ])
                 
             ]);

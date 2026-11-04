@@ -6,12 +6,14 @@ namespace App\Livewire;
 use App\Data\ProductData;
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ProductCatalog extends Component
 {
+    use WithPagination;
     public function render()
     {
-        $result = Product::paginate(9); //-> eloquent : connect ke database dan container jadi tanggungjawabnya terlalu besar
+        $result = Product::paginate(1); //-> eloquent : connect ke database dan container jadi tanggungjawabnya terlalu besar
         $products = ProductData::collect($result);
         // TODO Make a DTO
         // alasan kenapa menggunakan DTO

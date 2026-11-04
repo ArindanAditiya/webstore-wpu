@@ -76,7 +76,9 @@
                     {{-- @for ($i = 0; $i <= 10; $i++)
                         <x-single-product-card />
                     @endfor --}}
-
+                </div>
+                <div>
+                    {{ $products->links() }}
                 </div>
             </div>
         </div>

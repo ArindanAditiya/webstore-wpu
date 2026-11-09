@@ -1,5 +1,5 @@
  <div class="container mx-auto max-w-[85rem] w-full px-4 sm:px-6 lg:px-8 py-10">
-        <div class="grid grid-cols-1 gap-10 md:grid-cols-10">
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-10">   
             <div class="grid grid-cols-1 gap-10 pr-6 border-r border-gray-200 md:col-span-3">
                 <div>
                     <div class="space-y-3">
@@ -10,17 +10,6 @@
                         Collections
                     </span>
                     <div class="block space-y-4">
-                        @php
-                            $collections = [
-                                'Outwear',
-                                'Top',
-                                'Bottom',
-                                'Dress',
-                                'Accessories',
-                                'Footwear',
-                                'Activewear',
-                            ];
-                        @endphp
                         @foreach ($collections as $i => $item)
                             <div class="flex items-center justify-between">
                                 <div class="flex">
@@ -29,10 +18,10 @@
                                         id="hs-default-checkbox-{{ $i }}">
                                     <label for="hs-default-checkbox-{{ $i }}"
                                         class="text-sm font-light ms-3 dark:text-neutral-400">
-                                        {{ $item }}
+                                        {{ $item->name }}
                                     </label>
                                 </div>
-                                <span class="text-xs text-gray-800 font-loght">({{ rand(1, 99) }})</span>
+                                <span class="text-xs text-gray-800 font-loght">({{ $item->products_count }})</span>
                             </div>
                         @endforeach
                     </div>

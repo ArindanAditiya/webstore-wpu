@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
+use App\Data\ProductCollectionData;
 use App\Data\ProductData;
 use App\Models\Product;
+use App\Models\Tag;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -13,8 +15,11 @@ class ProductCatalog extends Component
     use WithPagination;
     public function render()
     {
-        $result = Product::paginate(1); //-> eloquent : connect ke database dan container jadi tanggungjawabnya terlalu besar
+        $collection_result = Tag::query()->withType("collection")->withCount("products")->get();
+        $result = Product::paginate(9); //-> eloquent : connect ke database dan container jadi tanggungjawabnya terlalu besar
+
         $products = ProductData::collect($result);
+        $collections = ProductCollectionData::collect($collection_result);
         // TODO Make a DTO
         // alasan kenapa menggunakan DTO
         // 1. clean code (Data & Logic)
@@ -25,6 +30,6 @@ class ProductCatalog extends Component
         // $product = Product::first();
         // dd(ProductData::fromModel($product));
         
-        return view('livewire.product-catalog', compact("products"));
+        return view('livewire.product-catalog', compact("products", "collections"));
     }
 }
